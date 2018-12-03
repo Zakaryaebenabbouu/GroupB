@@ -4,7 +4,7 @@ package org.mql.platform.models;
  * @author mehdithe
  */
 public enum DocumentType {
-
+  
 	REPORT,
 
 	PRESENTATION,
@@ -18,5 +18,4 @@ public enum DocumentType {
 	INTERNSHIP_CONVENTION,
 
 	PROGRESS_TYPE
-
 }
