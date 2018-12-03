@@ -5,6 +5,7 @@ package org.mql.platform.business.internship.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Vector;
 
 import org.mql.platform.business.internship.InternshipFacade;
 import org.mql.platform.dao.EnterpriseContactRepository;
@@ -39,25 +40,29 @@ public class DefaultInternshipFacade implements InternshipFacade {
 	}
 
 	@Transactional
-	public boolean addInternship(Internship internship) {
+	public boolean addOrUpdateInternship(Internship internship) {
 		try {
+
 			return internshipRepository.save(internship) != null;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
-	public Optional<Internship> findById(Integer id) {
+	public Optional<Internship> findInternshipById(Integer id) {
 		try {
-			Optional.of(internshipRepository.findById(id));
+			Optional<Internship> i = internshipRepository.findById(id);
+			System.out.println("======>" + i);
+			Optional.of(i);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return Optional.ofNullable(null);
 	}
 
-	public List<Internship> findAll() {
+	public List<Internship> findAllInternships() {
 
 		try {
 			return internshipRepository.findAll();
@@ -67,7 +72,7 @@ public class DefaultInternshipFacade implements InternshipFacade {
 		return null;
 	}
 
-	public Internship findByStudent(String cne) {
+	public Internship findInternshipByStudent(String cne) {
 
 		try {
 			return internshipRepository.findByStudent(cne);
@@ -77,52 +82,49 @@ public class DefaultInternshipFacade implements InternshipFacade {
 		return null;
 	}
 
-	public List<Internship> findByEnterprise(Integer id) {
+	public List<Internship> findInternshipByEnterprise(Integer id) {
+
 		try {
 			internshipRepository.findByEnterprise(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	@Transactional
-	public void update(String subject, Integer id) {
-		try {
-			internshipRepository.update(subject, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 	}
 
 	@Transactional
-	public void remove(Internship internship) {
-		try {
-			internshipRepository.deleteById(internship.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public boolean removeInternship(Integer id) {
 
+		List<Internship> internship = new Vector<>();
+		if (internship.get(id) != null) {
+			internshipRepository.deleteById(id);
+			return true;
+		} else
+			throw new RuntimeException("Internship not found !!");
 	}
 
 	@Transactional
-	public boolean addEnterpriseContact(EnterpriseContact enterpriseContact) {
+	public boolean addOrUpdateEnterpriseContact(EnterpriseContact enterpriseContact) {
 		try {
 			return enterpriseContactRepository.save(enterpriseContact) != null;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
 	public Optional<EnterpriseContact> findEnterpriseContactById(Integer id) {
 		try {
-			Optional.of(enterpriseContactRepository.findById(id));
+			Optional<EnterpriseContact> enterpriseContact = enterpriseContactRepository.findById(id);
+			System.out.println("=====>" + enterpriseContact);
+			Optional.of(enterpriseContact);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return Optional.ofNullable(null);
+
 	}
 
 	public List<EnterpriseContact> findAllEnterpriseContacts() {
@@ -130,34 +132,35 @@ public class DefaultInternshipFacade implements InternshipFacade {
 			return enterpriseContactRepository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
 	@Transactional
-	public void removeEnterprisecontact(Integer id) {
-		try {
+	public boolean removeEnterprisecontact(Integer id) {
+		List<EnterpriseContact> enterpriseContact = new Vector<>();
+		if (enterpriseContact.get(id) != null) {
 			enterpriseContactRepository.deleteById(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+			return true;
+		} else
+			throw new RuntimeException("EnterpriseContact not found !!");
 	}
 
 	@Transactional
-	public boolean addEnterpriseSite(EnterpriseSite enterpriseSite) {
+	public boolean addOrUpdateEnterpriseSite(EnterpriseSite enterpriseSite) {
 		try {
 			return enterpriseSiteRepository.save(enterpriseSite) != null;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
+			return false;
 		}
 
-		return false;
 	}
 
 	public Optional<EnterpriseSite> findEnterpriseSiteById(Integer id) {
 		try {
-			Optional.ofNullable(enterpriseSiteRepository.findById(id));
+			Optional.of(enterpriseSiteRepository.findById(id));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,17 +173,19 @@ public class DefaultInternshipFacade implements InternshipFacade {
 			return enterpriseSiteRepository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
 	@Transactional
-	public void removeEnterpriseSite(EnterpriseSite enterpriseSite) {
-		try {
-			enterpriseSiteRepository.deleteById(enterpriseSite.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public boolean removeEnterpriseSite(Integer id) {
+		List<EnterpriseSite> enterpriseSite = new Vector<>();
+		if (enterpriseSite.get(id) != null) {
+			enterpriseSiteRepository.deleteById(id);
+			return true;
+		} else
+			throw new RuntimeException("EnterpriseSite not found");
 
 	}
 

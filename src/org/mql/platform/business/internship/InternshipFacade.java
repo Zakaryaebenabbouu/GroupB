@@ -26,19 +26,17 @@ public interface InternshipFacade {
 	 * @return
 	 */
 
-	boolean addInternship(Internship internship);
+	boolean addOrUpdateInternship(Internship internship);
 
-	Optional<Internship> findById(Integer id);
+	Optional<Internship> findInternshipById(Integer id);
 
-	List<Internship> findAll();
+	List<Internship> findAllInternships();
 
-	Internship findByStudent(String cne);
+	Internship findInternshipByStudent(String cne);
 
-	List<Internship> findByEnterprise(Integer id);
+	List<Internship> findInternshipByEnterprise(Integer id);
 
-	void update(String subject, Integer id);
-
-	void remove(Internship internship);
+	boolean  removeInternship(Integer id);
 
 	/***
 	 * 
@@ -47,13 +45,13 @@ public interface InternshipFacade {
 	 * @return
 	 */
 
-	boolean addEnterpriseContact(EnterpriseContact enterpriseContact);
+	boolean addOrUpdateEnterpriseContact(EnterpriseContact enterpriseContact);
 
 	Optional<EnterpriseContact> findEnterpriseContactById(Integer id);
 
 	List<EnterpriseContact> findAllEnterpriseContacts();
 
-	void removeEnterprisecontact(Integer id);
+	boolean removeEnterprisecontact(Integer id);
 
 	/***
 	 * 
@@ -62,12 +60,12 @@ public interface InternshipFacade {
 	 * @return
 	 */
 
-	boolean addEnterpriseSite(EnterpriseSite enterpriseSite);
+	boolean addOrUpdateEnterpriseSite(EnterpriseSite enterpriseSite);
 
 	Optional<EnterpriseSite> findEnterpriseSiteById(Integer id);
 
 	List<EnterpriseSite> findAllEnterpriseSites();
 
-	void removeEnterpriseSite(EnterpriseSite enterpriseSite);
+	boolean removeEnterpriseSite(Integer id);
 
 }
