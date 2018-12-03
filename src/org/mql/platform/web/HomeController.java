@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-  @GetMapping("/demo")
-  public String get(Model model) {
-    // added a comment
-    model.addAttribute("message", "hello world");
-    return "demo";
-  }
+	@GetMapping("/demo")
+	public String get(Model model) {
+
+		// added a comment
+		model.addAttribute("message", "hello world");
+		return "demo";
+	}
 }

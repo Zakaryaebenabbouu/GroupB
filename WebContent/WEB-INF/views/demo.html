@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Hello World</title>
-  <link rel="stylesheet" th:href="@{/resources/app.css}"/>
+<meta charset="UTF-8">
+<title>Hello World</title>
+<link rel="stylesheet" th:href="@{/resources/app.css}" />
 </head>
 <body>
-<h1 th:text="${message}">This is a Thymleaf header <span th:text="${message}"></span></h1>
+	<h1 th:text="${message}">
+		This is a Thymleaf header <span th:text="${message}"></span>
+	</h1>
 
 </body>
 </html>
