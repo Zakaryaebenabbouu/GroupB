@@ -9,10 +9,12 @@ import java.util.Optional;
 import org.mql.platform.models.EnterpriseContact;
 import org.mql.platform.models.EnterpriseSite;
 import org.mql.platform.models.Internship;
+import org.mql.platform.models.InternshipTest;
 
 /**
  * 
- * The Services of "Internship, EnterpriseService, EnterpriseContact" CRUD'S operations.
+ * The Services of "Internship, EnterpriseService, EnterpriseContact, InternshipTest" CRUD'S
+ * operations.
  * 
  * @author Yassir SALIH
  *
@@ -36,7 +38,7 @@ public interface InternshipFacade {
 
 	List<Internship> findInternshipByEnterprise(Integer id);
 
-	boolean  removeInternship(Integer id);
+	boolean removeInternship(Integer id);
 
 	/***
 	 * 
@@ -67,5 +69,19 @@ public interface InternshipFacade {
 	List<EnterpriseSite> findAllEnterpriseSites();
 
 	boolean removeEnterpriseSite(Integer id);
+
+	/**
+	 * 
+	 * @param internshipTest
+	 * @return
+	 */
+
+	boolean addOrUpdateInternshipTest(InternshipTest internshipTest);
+
+	Optional<InternshipTest> findInternshipTestById(Integer id);
+
+	List<InternshipTest> findAllInternshipTests();
+
+	boolean removeInternshipTest(Integer id);
 
 }
